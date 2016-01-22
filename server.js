@@ -1,8 +1,6 @@
-'use strict';
-
 const Hapi = require('hapi');
-
 const server = new Hapi.Server();
+
 server.connection({ port: 22935 });
 
 server.route({
