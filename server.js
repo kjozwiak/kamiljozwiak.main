@@ -6,9 +6,8 @@ const server = new Hapi.Server();
 
 server.connection({ port: 22935,
                     tls: {
-                        key: fs.readFileSync('/etc/letsencrypt/live/kamiljozwiak.io/privkey.pem')
+                        key: fs.readFileSync('/etc/letsencrypt/live/kamiljozwiak.io/privkey.pem'),
                         cert: fs.readFileSync('/etc/letsencrypt/live/kamiljozwiak.io/fullchain.pem')
-                        ca: fs.readFileSync('/etc/letsencrypt/live/kamiljozwiak.io/chain.pem')
                     }
 
 });
