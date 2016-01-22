@@ -1,9 +1,15 @@
 'use strict';
 
 const Hapi = require('hapi');
+const fs = require('fs');
 const server = new Hapi.Server();
 
-server.connection({ port: 22935 });
+server.connection({ port: 22935,
+                    tls: {
+                        key: fs.readFileSync('/etc/letsencrypt/live/kamiljozwiak.io/fullchain.pem')
+                    }
+
+});
 
 server.route({
     method: 'GET',
