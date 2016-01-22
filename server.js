@@ -20,9 +20,12 @@ server.register(require('inert'), (err) => {
 
     server.route({
         method: 'GET',
-        path: '/mozilla',
-        handler: function (request, reply) {
-            reply.file('./mozilla/exp.html');
+        path: '/experiment/{param*}',
+        handler: {
+            directory: {
+            path: 'experiment',
+            listing: true
+            }
         }
     });
 });
