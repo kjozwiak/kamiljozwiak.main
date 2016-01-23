@@ -1,6 +1,7 @@
 'use strict';
 
 const Hapi = require('hapi');
+const fs = require('fs');
 const server = new Hapi.Server();
 
 const tlsOptions = {
