@@ -4,15 +4,7 @@ const Hapi = require('hapi');
 const fs = require('fs');
 const server = new Hapi.Server();
 
-const tlsOptions = {
-  tls: {
-    ca: fs.readFileSync('/home/kamil/cert/ca-bundle.crt'),
-    key: fs.readFileSync('/home/kamil/cert/myserver.key'),
-    cert: fs.readFileSync('/home/kamil/cert/domaincert.crt')
-  }
-};
-
-server.connection({ port: 22935, tls: tlsOptions});
+server.connection({ port: 22935});
 
 server.route({
     method: 'GET',
