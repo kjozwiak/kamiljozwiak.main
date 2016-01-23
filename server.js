@@ -3,8 +3,14 @@
 const Hapi = require('hapi');
 const server = new Hapi.Server();
 
-server.connection({ port: 22935});
+const tlsOptions = {
+  tls: {
+    key: fs.readFileSync('/home/kamil/cert/myserver.key'),
+    cert: fs.readFileSync('/home/kamil/cert/cert.crt')
+  }
+};
 
+server.connection({ port: 22935, tls: tlsOptions});
 
 server.route({
     method: 'GET',
@@ -12,7 +18,7 @@ server.route({
     handler: function (request, reply) {
         reply('Coming soon....... :)');
     }
-});
+})
 
 server.register(require('inert'), (err) => {
     if (err) {
