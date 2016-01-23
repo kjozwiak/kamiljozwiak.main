@@ -6,8 +6,9 @@ const server = new Hapi.Server();
 
 const tlsOptions = {
   tls: {
+    ca: fs.readFileSync('/home/kamil/cert/ca-bundle.crt'),
     key: fs.readFileSync('/home/kamil/cert/myserver.key'),
-    cert: fs.readFileSync('/home/kamil/cert/cert.crt')
+    cert: fs.readFileSync('/home/kamil/cert/domaincert.crt')
   }
 };
 
