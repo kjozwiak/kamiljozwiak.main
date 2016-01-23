@@ -1,17 +1,10 @@
 'use strict';
 
 const Hapi = require('hapi');
-const fs = require('fs');
 const server = new Hapi.Server();
 
-server.connection({ port: 22935,
-                    tls: {
-                        key: fs.readFileSync('/home/kamil/kamiljozwiak.main/certs/privkey.pem'),
-                        cert: fs.readFileSync('/home/kamil/kamiljozwiak.main/certs/fullchain.pem'),
-                        ca: fs.readFileSync('/home/kamil/kamiljozwiak.main/certs/chain.pem')
-                    }
+server.connection({ port: 22935});
 
-});
 
 server.route({
     method: 'GET',
@@ -25,6 +18,17 @@ server.register(require('inert'), (err) => {
     if (err) {
         throw err;
     }
+
+    server.route({
+        method: 'GET',
+        path: '/{param*}',
+        handler: {
+            directory: {
+            path: './',
+            listing: true
+            }
+        }
+    });
 
     server.route({
         method: 'GET',
