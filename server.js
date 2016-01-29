@@ -25,8 +25,7 @@ server.register(require('inert'), (err) => {
         path: '/{param*}',
         handler: {
             directory: {
-            path: './',
-            listing: true
+            path: './'
             }
         }
     });
@@ -37,8 +36,7 @@ server.register(require('inert'), (err) => {
         config: {
             handler: {
                 directory: {
-                path: 'experiment',
-                listing: true
+                path: 'experiment'
                 }
             },
             plugins: {
