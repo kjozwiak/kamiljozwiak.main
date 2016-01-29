@@ -34,10 +34,15 @@ server.register(require('inert'), (err) => {
     server.route({
         method: 'GET',
         path: '/experiment/{param*}',
-        handler: {
-            directory: {
-            path: 'experiment',
-            listing: true
+        config: {
+            handler: {
+                directory: {
+                path: 'experiment',
+                listing: true
+                }
+            },
+            plugins: {
+                blankie: false
             }
         }
     });
