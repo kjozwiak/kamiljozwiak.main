@@ -1,7 +1,8 @@
 'use strict';
 
 const Hapi = require('hapi');
-const fs = require('fs');
+const Blankie = require('blankie');
+const Scooter = require('scooter');
 const server = new Hapi.Server();
 
 server.connection({ port: 22935});
@@ -42,6 +43,19 @@ server.register(require('inert'), (err) => {
     });
 });
 
-server.start(() => {
-    console.log('Server running at:', server.info.uri);
+server.register([Scooter, {
+    register: Blankie,
+    options: {
+        // examples of CSP directives that affect the entire server
+        // objectSrc: ['unsafe-inline', 'unsafe-eval']
+    }
+}], function (err) {
+
+    if (err) {
+        throw err;
+    }
+
+    server.start(() => {
+        console.log('Server running at:', server.info.uri);
+    });
 });

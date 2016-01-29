@@ -4,8 +4,10 @@
   "description": "",
   "main": "server.js",
   "dependencies": {
+    "blankie": "^1.1.1",
     "hapi": "^12.1.0",
-    "inert": "^3.2.0"
+    "inert": "^3.2.0",
+    "scooter": "^2.0.1"
   },
   "repository": {
     "type": "git",
